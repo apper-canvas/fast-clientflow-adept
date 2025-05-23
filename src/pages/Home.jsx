@@ -1,145 +1,84 @@
-import { useState } from 'react'
-import { motion } from 'framer-motion'
 import MainFeature from '../components/MainFeature'
 import ApperIcon from '../components/ApperIcon'
+import { motion } from 'framer-motion'
 
 const Home = () => {
-  const [darkMode, setDarkMode] = useState(false)
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode)
-    document.documentElement.classList.toggle('dark')
-  }
+  const stats = [
+    { label: 'Total Contacts', value: '2,847', icon: 'Users', color: 'text-blue-600', bg: 'bg-blue-100 dark:bg-blue-900/30' },
+    { label: 'Active Deals', value: '156', icon: 'TrendingUp', color: 'text-green-600', bg: 'bg-green-100 dark:bg-green-900/30' },
+    { label: 'Revenue', value: '$847K', icon: 'DollarSign', color: 'text-purple-600', bg: 'bg-purple-100 dark:bg-purple-900/30' },
+    { label: 'Tasks Due', value: '23', icon: 'Clock', color: 'text-orange-600', bg: 'bg-orange-100 dark:bg-orange-900/30' }
+  ]
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute top-10 left-10 w-32 h-32 bg-primary/10 rounded-full blur-xl"
-          animate={{
-            x: [0, 100, 0],
-            y: [0, 50, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-20 w-48 h-48 bg-secondary/10 rounded-full blur-xl"
-          animate={{
-            x: [0, -80, 0],
-            y: [0, -60, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
+    <div className="space-y-6">
+      {/* Dashboard Header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-surface-900 dark:text-surface-100">Welcome back, John</h1>
+          <p className="text-surface-600 dark:text-surface-400">Here's what's happening with your business today.</p>
+        </div>
+        <motion.button
+          className="px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-xl hover:from-primary-dark hover:to-secondary-dark transition-all duration-300 shadow-soft flex items-center gap-2"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          <ApperIcon name="Plus" className="w-5 h-5" />
+          <span>Quick Add</span>
+        </motion.button>
       </div>
 
-      {/* Header */}
-      <header className="relative z-10 px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
-        <nav className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <motion.div 
-            className="flex items-center gap-3"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="p-2 bg-gradient-to-br from-primary to-secondary rounded-xl shadow-soft">
-              <ApperIcon name="Users" className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
-            </div>
-            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              ClientFlow
-            </h1>
-          </motion.div>
-          
-          <motion.button
-            onClick={toggleDarkMode}
-            className="p-2 sm:p-3 rounded-xl bg-white/50 dark:bg-surface-800/50 backdrop-blur-sm border border-surface-200 dark:border-surface-700 hover:bg-white/70 dark:hover:bg-surface-700/70 transition-all duration-300 shadow-soft"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <ApperIcon name={darkMode ? "Sun" : "Moon"} className="w-5 h-5 text-surface-700 dark:text-surface-300" />
-          </motion.button>
-        </nav>
-      </header>
-
-      {/* Hero Section */}
-      <section className="relative z-10 px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.h2
-            className="text-3xl sm:text-4xl lg:text-6xl font-bold text-surface-900 dark:text-surface-100 mb-4 sm:mb-6"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-          >
-            Streamline Your{' '}
-            <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-              Customer Relationships
-            </span>
-          </motion.h2>
-          
-          <motion.p
-            className="text-lg sm:text-xl text-surface-600 dark:text-surface-400 mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed"
+      {/* Stats Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {stats.map((stat, index) => (
+          <motion.div
+            key={stat.label}
+            className="bg-white dark:bg-surface-800 rounded-2xl p-6 border border-surface-200 dark:border-surface-700 shadow-soft hover:shadow-card transition-all duration-300"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.5 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            whileHover={{ y: -2 }}
           >
-            Manage contacts, track deals, and grow your business with our intuitive CRM platform designed for modern teams.
-          </motion.p>
-
-          {/* Feature Cards */}
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-12 sm:mb-16"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.7 }}
-          >
-            {[
-              { icon: "Users", title: "Contact Management", desc: "Organize and track all customer interactions" },
-              { icon: "TrendingUp", title: "Sales Pipeline", desc: "Visualize and manage your deals effectively" },
-              { icon: "Calendar", title: "Task Scheduling", desc: "Never miss important follow-ups" }
-            ].map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                className="p-4 sm:p-6 bg-white/70 dark:bg-surface-800/70 backdrop-blur-sm rounded-2xl border border-surface-200 dark:border-surface-700 shadow-soft hover:shadow-card transition-all duration-300"
-                whileHover={{ y: -5, scale: 1.02 }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-              >
-                <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-4 mx-auto">
-                  <ApperIcon name={feature.icon} className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="font-semibold text-surface-900 dark:text-surface-100 mb-2">{feature.title}</h3>
-                <p className="text-sm text-surface-600 dark:text-surface-400">{feature.desc}</p>
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-surface-600 dark:text-surface-400 mb-1">{stat.label}</p>
+                <p className="text-2xl font-bold text-surface-900 dark:text-surface-100">{stat.value}</p>
               </motion.div>
-            ))}
+              <div className={`p-3 rounded-xl ${stat.bg}`}>
+                <ApperIcon name={stat.icon} className={`w-6 h-6 ${stat.color}`} />
+              </div>
+            </div>
           </motion.div>
-        </div>
-      </section>
+        ))}
+      </div>
 
-      {/* Main Feature Section */}
-      <section className="relative z-10 px-4 sm:px-6 lg:px-8 pb-12 sm:pb-16 lg:pb-20">
+      {/* Quick Actions */}
+      <div className="bg-white dark:bg-surface-800 rounded-2xl p-6 border border-surface-200 dark:border-surface-700 shadow-soft">
+        <h3 className="text-lg font-semibold text-surface-900 dark:text-surface-100 mb-4">Quick Actions</h3>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {[
+            { icon: 'UserPlus', label: 'Add Contact', color: 'text-blue-600' },
+            { icon: 'Plus', label: 'New Deal', color: 'text-green-600' },
+            { icon: 'Calendar', label: 'Schedule Call', color: 'text-purple-600' },
+            { icon: 'FileText', label: 'Create Report', color: 'text-orange-600' }
+          ].map((action) => (
+            <motion.button
+              key={action.label}
+              className="p-4 text-center hover:bg-surface-50 dark:hover:bg-surface-700 rounded-xl transition-all duration-200 group"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <ApperIcon name={action.icon} className={`w-8 h-8 ${action.color} mx-auto mb-2 group-hover:scale-110 transition-transform`} />
+              <p className="text-sm font-medium text-surface-700 dark:text-surface-300">{action.label}</p>
+            </motion.button>
+          ))}
+        </div>
+      </div>
+
+      {/* Main CRM Features */}
+      <div>
         <MainFeature />
-      </section>
-
-      {/* Footer */}
-      <footer className="relative z-10 px-4 sm:px-6 lg:px-8 py-6 sm:py-8 border-t border-surface-200 dark:border-surface-700 bg-white/30 dark:bg-surface-800/30 backdrop-blur-sm">
-        <div className="max-w-6xl mx-auto text-center">
-          <p className="text-surface-600 dark:text-surface-400 text-sm sm:text-base">
-            © 2024 ClientFlow. Empowering businesses to build stronger customer relationships.
-          </p>
-        </div>
-      </footer>
+      </div>
     </div>
   )
 }

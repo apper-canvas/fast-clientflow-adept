@@ -224,9 +224,9 @@ const MainFeature = () => {
   ]
 
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className="w-full">
       <motion.div
-        className="bg-white/80 dark:bg-surface-800/80 backdrop-blur-sm rounded-3xl shadow-neu-light dark:shadow-neu-dark border border-surface-200 dark:border-surface-700 overflow-hidden"
+        className="bg-white dark:bg-surface-800 rounded-2xl border border-surface-200 dark:border-surface-700 shadow-soft overflow-hidden"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.9 }}
@@ -256,7 +256,7 @@ const MainFeature = () => {
         </div>
 
         {/* Tab Content */}
-        <div className="p-4 sm:p-6 lg:p-8">
+        <div className="p-6">
           <AnimatePresence mode="wait">
             {/* Contacts Tab */}
             {activeTab === 'contacts' && (
@@ -269,12 +269,9 @@ const MainFeature = () => {
                 className="space-y-6"
               >
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                  <h3 className="text-xl sm:text-2xl font-bold text-surface-900 dark:text-surface-100">
-                    Contact Management
-                  </h3>
                   <motion.button
                     onClick={() => setShowContactForm(!showContactForm)}
-                    className="w-full sm:w-auto px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-xl hover:from-primary-dark hover:to-secondary-dark transition-all duration-300 shadow-soft flex items-center justify-center gap-2"
+                    className="ml-auto px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-xl hover:from-primary-dark hover:to-secondary-dark transition-all duration-300 shadow-soft flex items-center gap-2"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -425,12 +422,9 @@ const MainFeature = () => {
                 className="space-y-6"
               >
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                  <h3 className="text-xl sm:text-2xl font-bold text-surface-900 dark:text-surface-100">
-                    Sales Pipeline
-                  </h3>
                   <motion.button
                     onClick={() => setShowDealForm(!showDealForm)}
-                    className="w-full sm:w-auto px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-xl hover:from-primary-dark hover:to-secondary-dark transition-all duration-300 shadow-soft flex items-center justify-center gap-2"
+                    className="ml-auto px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-xl hover:from-primary-dark hover:to-secondary-dark transition-all duration-300 shadow-soft flex items-center gap-2"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -573,12 +567,9 @@ const MainFeature = () => {
                 className="space-y-6"
               >
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                  <h3 className="text-xl sm:text-2xl font-bold text-surface-900 dark:text-surface-100">
-                    Task Management
-                  </h3>
                   <motion.button
                     onClick={() => setShowActivityForm(!showActivityForm)}
-                    className="w-full sm:w-auto px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-xl hover:from-primary-dark hover:to-secondary-dark transition-all duration-300 shadow-soft flex items-center justify-center gap-2"
+                    className="ml-auto px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-xl hover:from-primary-dark hover:to-secondary-dark transition-all duration-300 shadow-soft flex items-center gap-2"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >

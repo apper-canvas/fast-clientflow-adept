@@ -6,6 +6,7 @@
 @layer base {
   html {
     font-family: 'Inter', system-ui, sans-serif;
+    scroll-behavior: smooth;
   }
   
   body {
@@ -55,6 +56,20 @@
 }
 
 /* Responsive text utilities */
+@layer components {
+  .sidebar-nav-item {
+    @apply flex items-center gap-3 px-4 py-3 text-surface-700 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-700 rounded-xl transition-all duration-200;
+  }
+  
+  .dashboard-card {
+    @apply bg-white dark:bg-surface-800 rounded-2xl p-6 border border-surface-200 dark:border-surface-700 shadow-soft hover:shadow-card transition-all duration-300;
+  }
+  
+  .app-button {
+    @apply px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-xl hover:from-primary-dark hover:to-secondary-dark transition-all duration-300 shadow-soft;
+  }
+}
+
 @layer utilities {
   .text-responsive-xs {
     @apply text-xs sm:text-sm;
